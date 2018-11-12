@@ -8,41 +8,7 @@ using System.IO;
 namespace CustomShaderHandler
 {
     class ShaderManager
-    {
-        /// <summary>
-        /// Loads Shader class from path and unity3d asset bundle
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="shaderName"></param>
-        /// <returns></returns>
-        public static Shader LoadShaderFile(ConfigShader shader)
-        {
-            Shader s = null;
-
-            try
-            {
-                using (WWW www = new WWW("file://" + shader.diskPath))
-                {
-                    AssetBundle b = www.assetBundle;
-
-                    s = b.LoadAsset<Shader>(shader.name);
-
-                    if(s == null)
-                    {
-                        Logging.Error("Shader [" + shader.name + "] is not existing or path is incorrect. Please take in note that the unity3d file has been found.");
-                    }
-
-                    b.Unload(false);
-                }
-            }
-            catch(Exception e)
-            {
-                Logging.Error("unity3d file [" + shader.path + "] is not existing or path is incorrect." + Environment.NewLine + e);
-            }
-
-            return s;
-        }
-
+    {  
         /// <summary>
         /// Returns all the configs for the mod
         /// </summary>
@@ -128,7 +94,7 @@ namespace CustomShaderHandler
             {
                 get
                 {
-                    return LoadShaderFile(this);
+                    return Utils.OpenShaderFromDisk(this);
                 }
             }
 

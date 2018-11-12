@@ -168,8 +168,9 @@ namespace CustomShaderHandler
                     }
 
                     //Texture
-                    else if (key.Value.GetType() == typeof(Texture))
+                    else if (key.Value.GetType() == typeof(Texture2D))
                     {
+                        Logging.Warning("Hello from the Applier (Key= " + key.Key + " | Value= " + key.Value + ")");
                         m.SetTexture(key.Key, (Texture)key.Value);
                     }
                 }

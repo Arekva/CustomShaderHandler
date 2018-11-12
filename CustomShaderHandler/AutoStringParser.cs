@@ -40,12 +40,13 @@ namespace CustomShaderHandler
         {
             int commaCount = 0;
 
-            //String case and comma counting for vector parsing
+            //String case (Texture) and comma counting for vector parsing
             foreach (char c in value)
             {
                 if(!numerals.Contains(c))
                 {
-                    return value;
+                    Logging.Warning("test string parse");
+                    return Utils.OpenTextureFromDisk(System.IO.Path.Combine(KSPUtil.ApplicationRootPath, "GameData/" + value));
                 }
 
                 if(c == ',')
